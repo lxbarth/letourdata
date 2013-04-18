@@ -1,0 +1,44 @@
+#!/bin/bash
+# Merge track points and tracks into single shape files.
+ogr2ogr track_points.shp 01.shp/track_points.shp
+ogr2ogr -update -append track_points.shp 02.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 03.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 04.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 05.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 06.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 07.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 08.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 09.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 10.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 11.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 12.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 13.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 14.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 15.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 16.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 17.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 18.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 19.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 20.shp/track_points.shp -nln track_points
+ogr2ogr -update -append track_points.shp 21.shp/track_points.shp -nln track_points
+ogr2ogr tracks.shp 01.shp/tracks.shp
+ogr2ogr -update -append tracks.shp 02.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 03.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 04.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 05.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 06.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 07.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 08.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 09.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 10.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 11.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 12.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 13.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 14.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 15.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 16.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 17.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 18.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 19.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 20.shp/tracks.shp -nln tracks
+ogr2ogr -update -append tracks.shp 21.shp/tracks.shp -nln tracks

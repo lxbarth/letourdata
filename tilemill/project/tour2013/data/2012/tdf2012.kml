@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Tour de France 2012</name>
+  <description><![CDATA[The official route of the Tour de France 2012 was brought to you by <a href="http://www.velowire.com">www.velowire.com</a>]]></description>
+  <NetworkLink>
+    <Url>
+      <name>Tour de France 2012</name>
+      <href>http://www.velowire.com/images/blog/tdf/2012/tourdefrance2012.kml</href>
+    </Url>
+  </NetworkLink>
+</Document>
+</kml>
