@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tour de France 2013 data</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<html>
+	<head>
+	<link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/mapbox.css' rel='stylesheet' />
+	<!--[if lte IE 8]>
+	    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/mapbox.ie.css' rel='stylesheet' />
+	  <![endif]-->
+	<script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/mapbox.js'></script>
+  <script src='leaflet-hash.js'></script>
+	<script src="http://d3js.org/topojson.v0.min.js"></script>
+	<script src='tracks.js'></script>
+	<script src='stages.js'></script>
+
+	<style>
+	  html,
+	  body,
+		#map {
+		  padding: 0;
+		  margin: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.leaflet-roads-pane {
+			pointer-events: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="map"></div>
+	<script type="text/javascript">
+	  L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
+
+		var map = L.mapbox.map('map', 'lxbarth.map-msx8qhha')
+			.setView([46.81, 3.05], 5);
+	  new L.Hash(map);
+
+		function trackStyle(feature) {
+			return {
+				weight: 15,
+				opacity: 0.5,
+				color: '#fdd351',
+				fillOpacity: 0.7,
+				fillColor: '#fdd351'
+			};
+		}
+
+		L.geoJson(topojson.object(tracks, tracks.objects.tracks), {
+			style: trackStyle,
+		}).addTo(map);
+    map.attributionControl.addAttribution('Preliminary Tour de France 2013 data &copy; <a href="http://www.bikemap.net/route/1351870">Bikemap.net / Stef@n</a>');
+
+		var roadsPane = map._createPane('leaflet-roads-pane', map.getPanes().mapPane);
+		var roadsLayer = L.mapbox.tileLayer('lxbarth.map-vtt23b1i').addTo(map);
+		roadsPane.appendChild(roadsLayer.getContainer());
+		roadsLayer.setZIndex(9);
+
+    function stageStyle(feature, latlng) {
+      return L.circleMarker(latlng, {
+          radius: 15,
+          fillColor: "#e5af42",
+          color: "#fff",
+          weight: 0,
+          fillOpacity: 0.9
+      });
+    }
+    function onEachFeature(feature, layer) {
+        if (feature.properties && feature.properties.desc) {
+            layer.bindPopup(feature.properties.desc);
+        }
+    }
+
+		var topPane = map._createPane('leaflet-top-pane', map.getPanes().mapPane);
+    var topLayer = L.geoJson(stages, { pointToLayer: stageStyle, onEachFeature: onEachFeature }).addTo(map);
+    // Does not work
+    // topPane.appendChild(topLayer.getContainer());
+    // topLayer.setZIndex(10);
+
+  </script>
+</body>
+</html>
