@@ -39,18 +39,20 @@
 			.setView([46.81, 3.05], 5);
 	  new L.Hash(map);
 
-		function trackStyle(feature) {
-			return {
-				weight: 15,
-				opacity: 0.5,
-				color: '#fdd351',
-				fillOpacity: 0.7,
-				fillColor: '#fdd351'
+		function trackStyle(zoom) {
+			return function(feature) {
+			  return {
+				  weight: zoom * zoom / 6,
+				  opacity: 0.9,
+				  color: '#fdd351',
+				  fillOpacity: 0.9,
+				  fillColor: '#fdd351'
+			  };
 			};
 		}
 
-		L.geoJson(topojson.object(tracks, tracks.objects.tracks), {
-			style: trackStyle,
+		var tracksLayer = L.geoJson(topojson.object(tracks, tracks.objects.tracks), {
+			style: trackStyle(5),
 		}).addTo(map);
     map.attributionControl.addAttribution('Preliminary Tour de France 2013 data &copy; <a href="http://www.bikemap.net/route/1351870">Bikemap.net / Stef@n</a>');
 
@@ -76,10 +78,13 @@
 
 		var topPane = map._createPane('leaflet-top-pane', map.getPanes().mapPane);
     var topLayer = L.geoJson(stages, { pointToLayer: stageStyle, onEachFeature: onEachFeature }).addTo(map);
-    // Does not work
+    // Does not work https://github.com/mapbox/labs/issues/54#issuecomment-16559568
     // topPane.appendChild(topLayer.getContainer());
     // topLayer.setZIndex(10);
 
+    map.on('zoomend', function() {
+      tracksLayer.setStyle(trackStyle(map.getZoom()));
+    });
   </script>
 </body>
 </html>
