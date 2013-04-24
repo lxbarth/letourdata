@@ -6,7 +6,7 @@ import httplib
 import json
 import sys
 
-for i in range(1, 22):
+for i in range(15, 19):
     stage = "%02d" % i;
     print "Retrieving elevation data for " + stage + ".shp/tracks.shp"
     with collection(stage + ".shp/tracks.shp", "r") as input:
