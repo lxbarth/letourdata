@@ -54,7 +54,15 @@ Run
 
      ogr2ogr -f "GeoJSON" tracks.json tracks.shp tracks
 
-### (5) Retrieve elevation points
+### (5) Make a smaller topojson file out of it
+
+- Input: `tracks.json`
+- Output: `tracks.topojson`
+
+    // Forgot the -q factor I used.
+    topojson -o tracks.json tarcks.topojson
+
+### (6) Retrieve elevation points
 
 - Input: `tracks.shp`
 - Output: `elevation/*`
