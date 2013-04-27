@@ -10,6 +10,12 @@ Originally downloaded files in `originals/`.
 
 ## Conversion process
 
+This conversion process is a bit roundabout as it literally follows the
+steps I took to wrap my mind around this data and what's useful and not.
+
+This is less a documentation to follow step-by-step but more a "historical"
+explanation of the coming about of the files in this directory.
+
 ### (1) Convert GPX to shape files
 
 - Input: `originals/*`
@@ -26,6 +32,9 @@ a way to do this with `ogr2ogr`.
 Run
 
     ./merge
+
+There is a manual step where I went in and annotated start and end locations together
+with meta information like stage number, name, length.
 
 ### (3) Generate a JSON file of all stages + meta info
 
