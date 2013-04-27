@@ -6,7 +6,7 @@ import httplib
 import json
 import sys
 
-for i in range(15, 19):
+for i in range(0, 22):
     stage = "%02d" % i;
     print "Retrieving elevation data for " + stage + ".shp/tracks.shp"
     with collection(stage + ".shp/tracks.shp", "r") as input:
@@ -34,7 +34,7 @@ for i in range(15, 19):
                     finally:
                         conn.close()
 
-        sys.sdout.write('\n')
+        sys.stdout.write('\n')
         filename = 'stage_' + stage + '_elevation.json';
         json.dump(profile, open(filename, 'w'))
         print filename + " written"
