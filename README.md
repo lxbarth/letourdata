@@ -8,7 +8,7 @@ Inofficial mapping + data kit for the Tour de France 2013.
 
 Early start, for raw data look at
 
-    tilemill/project/tour2013/data
+    data/
 
 ## Backlog
 
