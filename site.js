@@ -2,6 +2,7 @@ L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/
 
 var map = L.mapbox.map('map', 'lxbarth.map-msx8qhha').setView([46.081, 4.592], 6);
 new L.Hash(map);
+map.zoomControl.setPosition('topright');
 
 function trackStyle(zoom) {
     return function(feature) {
