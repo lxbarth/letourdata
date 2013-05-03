@@ -66,4 +66,13 @@ Run
 
     python elevation.py
 
+### (7) Generate track geojson files
+
+- Input: `01.shp/` ... `21.shp`
+- Input: `tracks/*`
+
+Run
+
+    python tracks.py
+
 
