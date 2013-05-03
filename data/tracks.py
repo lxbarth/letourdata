@@ -2,6 +2,7 @@
 
 from fiona import collection
 import json
+import subprocess
 
 for i in range(1, 22):
     stage = "%02d" % i;
@@ -14,3 +15,4 @@ for i in range(1, 22):
                 "properties": track['properties']
             })
         json.dump(geojson, open('tracks/track-%s.json' % stage, 'w'))
+        subprocess.call('topojson -o tracks/track-%s.topojson tracks/track-%s.json' % (stage, stage), shell=True)

@@ -55,7 +55,7 @@ Run
 - Output: `tracks.topojson`
 
     // Forgot the -q factor I used.
-    topojson -o tracks.json tarcks.topojson
+    topojson -o tracks.topojson tarcks.json
 
 ### (6) Retrieve elevation points
 
