@@ -24,7 +24,11 @@ explanation of the coming about of the files in this directory.
 Open each GPX track in QGis and save export it at as shapefile. TODO: there has to be
 a way to do this with `ogr2ogr`.
 
-### (2) Merge Shapefiles into one
+### (2) Create stages.json
+
+All hand sourced from letour.com and start lat / lons from GPX files.
+
+### (3) Merge Shapefiles into one
 
 - Input: `01.shp/` ... `21.shp`
 - Output: `tracks.shp` and `track_points.shp`
@@ -35,15 +39,6 @@ Run
 
 There is a manual step where I went in and annotated start and end locations together
 with meta information like stage number, name, length.
-
-### (3) Generate a JSON file of all stages + meta info
-
-- Input: `track_points.shp`
-- Output: `stages.json`
-
-Run
-
-    python stages.py
 
 ### (4) Generate a JSON file of all tracks
 
