@@ -14,5 +14,5 @@ for i in range(1, 22):
                 "geometry": track['geometry'],
                 "properties": track['properties']
             })
-        json.dump(geojson, open('tracks/track-%s.json' % stage, 'w'))
-        subprocess.call('topojson -o tracks/track-%s.topojson tracks/track-%s.json' % (stage, stage), shell=True)
+        json.dump(geojson, open('tracks/track-%s.json' % i, 'w'))
+        subprocess.call('topojson -o tracks/track-%s.topojson tracks/track-%s.json' % (i, i), shell=True)
