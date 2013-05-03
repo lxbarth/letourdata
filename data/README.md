@@ -68,6 +68,8 @@ Run
 
 ### (7) Generate track geojson files
 
+(Aside from python and python dependencies requires topojson installed and in path)
+
 - Input: `01.shp/` ... `21.shp`
 - Input: `tracks/*`
 
