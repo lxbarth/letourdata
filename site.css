@@ -94,17 +94,17 @@ p {
 
 /* Links */
 a {
-  color:#05b;
+  color:steelblue;
   text-decoration:none;
   }
   a:visited {
-    color:#05b;
+    color:steelblue;
     }
   a:hover {
-    color:#05b;
+    color:steelblue;
     }
   a:active {
-    color:#05b;
+    color:steelblue;
     }
 
 abbr {
@@ -317,6 +317,9 @@ Details: http://www.positioniseverything.net/easyclearing.html
   z-index: 200;
   background-color: #fff;
   }
+
+/* Map */
+
 #map {
   position: absolute;
   top: 20px;
@@ -343,4 +346,25 @@ Details: http://www.positioniseverything.net/easyclearing.html
   border-radius: 15px;
   text-align: center;
   line-height: 30px;
+}
+
+/* Elevatin graph */
+
+#elevation { z-index: 300; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }
