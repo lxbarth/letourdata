@@ -39,24 +39,6 @@ for (var stage = 1; stage <= 21; stage++) {
     (function(stage) {
         loadJSON('data/tracks/track-' + stage + '.topojson', function(track) {
             var json = topojson.object(track, track.objects['track-' + stage]);
-            var coords = json.geometries[0].coordinates;
-            var distances = [];
-            for (var i in coords) {
-                if (i == 0) {
-                    distances[0] = 0;
-                } else {
-                    var from = new L.LatLng(coords[i - 1][1], coords[i - 1][0]);
-                    var to = new L.LatLng(coords[i][1], coords[i][0]);
-                    distances[i] = distances[i - 1] + from.distanceTo(to);
-                }
-            }
-            var half = distances[distances.length - 1] / 2;
-            for (var i in distances) {
-                if (distances[i] > half) {
-                    console.log(stage + " [" + coords[i] + "]");
-                    break;
-                }
-            }
             var layer = L.geoJson(json, {
                 style: trackStyle(5),
             }).addTo(map);
