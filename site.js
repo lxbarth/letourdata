@@ -74,6 +74,11 @@ loadJSON('data/stages.json', function(stages, err) {
             icon: stageIcon,
             style: {width: '100px'}
         });
+        (function(marker, stage) {
+            marker.on('click', function() {
+                loadElevation(stage);
+            })
+        })(marker, p.ordinal);
         var o = '';
         o += '<div class="date">' + p.date + '</div>';
         o += '<div class="stage">Stage ' + p.ordinal + '</div>';
@@ -87,58 +92,61 @@ loadJSON('data/stages.json', function(stages, err) {
     }
 });
 
-loadJSON('data/elevation/stage_15_elevation.json', function(data, err) {
-    if (err) return console.error(err);
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        width = 300 - margin.left - margin.right,
-        height = 150 - margin.top - margin.bottom;
+function loadElevation(stage) {
+    loadJSON('data/elevation/stage_' + stage + '_elevation.json', function(data, err) {
+        if (err) return console.error(err);
+        var margin = {top: 20, right: 20, bottom: 30, left: 50},
+            width = 300 - margin.left - margin.right,
+            height = 150 - margin.top - margin.bottom;
 
-    var x = d3.scale.linear()
-        .range([0, width]);
+        var x = d3.scale.linear()
+            .range([0, width]);
 
-    var y = d3.scale.linear()
-        .range([height, 0]);
+        var y = d3.scale.linear()
+            .range([height, 0]);
 
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom")
-        .ticks(5);
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .ticks(5);
 
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left")
-        .ticks(5);
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .ticks(5);
 
-    var line = d3.svg.line()
-        .x(function(d, i) { return x(i); })
-        .y(function(d, i) { return y(d); });
+        var line = d3.svg.line()
+            .x(function(d, i) { return x(i); })
+            .y(function(d, i) { return y(d); });
 
-    var svg = d3.select("#elevation").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        document.getElementById('elevation').innerHTML = "";
+        var svg = d3.select("#elevation").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    x.domain(d3.extent(Object.keys(data), function(d) { return d; }));
-    y.domain(d3.extent(data, function(d) { return d; }));
+        x.domain(d3.extent(Object.keys(data), function(d) { return d; }));
+        y.domain(d3.extent(data, function(d) { return d; }));
 
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
 
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-      .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Elevation (m)");
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Elevation (m)");
 
-    svg.append("path")
-        .datum(data)
-        .attr("class", "line")
-        .attr("d", line);
-});
+        svg.append("path")
+            .datum(data)
+            .attr("class", "line")
+            .attr("d", line);
+    });
+}
