@@ -331,3 +331,15 @@ Details: http://www.positioniseverything.net/easyclearing.html
 .inner {
   padding: 20px;
   }
+.leaflet-marker-pane {
+  z-index: 10;
+  }
+.stage-marker {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #e30;
+  color: #fff;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 30px;
+}

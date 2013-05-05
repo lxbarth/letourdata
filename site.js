@@ -1,5 +1,3 @@
-// Bug fix
-L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
 
 // XHR/JSON helper
 function loadJSON(path, callback) {
@@ -43,6 +41,7 @@ for (var stage = 1; stage <= 21; stage++) {
             var layer = L.geoJson(topojson.object(track, track.objects['track-' + stage]), {
                 style: trackStyle(5),
             }).addTo(map);
+            layer.setZIndex(5);
             map.on('zoomend', function() {
                 layer.setStyle(trackStyle(map.getZoom()));
             });
@@ -59,24 +58,19 @@ roadsLayer.setZIndex(9);
 
 // Markers
 
-function stageStyle(feature, latlng) {
-    return L.circleMarker(latlng, {
-        radius: 8,
-        fillColor: "#E0865D",
-        color: "#fff",
-        weight: 0,
-        fillOpacity: 0.9
-    });
-}
-function onEachFeature(feature, layer) {
-    if (feature.properties && feature.properties.desc) {
-        layer.bindPopup(feature.properties.desc);
+loadJSON('data/stages.json', function(stages) {
+    for (var i in stages.features) {
+        var stage = stages.features[i];
+        var stageIcon = L.divIcon({
+            className: 'stage-marker',
+            iconSize: new L.Point(30, 30),
+            html: '<div class="stage-label" id="' + stage.properties.ordinal + '">' + stage.properties.ordinal + '</div>'
+        });
+        (new L.Marker(new L.LatLng(
+            stage.geometry.coordinates[1],
+            stage.geometry.coordinates[0]), {
+            icon: stageIcon,
+            style: {width: '100px'}
+        })).addTo(map);
     }
-}
-
-var topPane = map._createPane('leaflet-top-pane', map.getPanes().mapPane);
-var topLayer = L.geoJson(stages, {
-    pointToLayer: stageStyle,
-    onEachFeature: onEachFeature
-}).addTo(map); // Does not work https: //github.com/mapbox/labs/issues/54#issuecomment-16559568 // topPane.appendChild(topLayer.getContainer());
-// topLayer.setZIndex(10);
+});
