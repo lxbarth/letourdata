@@ -1,6 +1,22 @@
 // Bug fix
 L.Icon.Default.imagePath = 'http://api.tiles.mapbox.com/mapbox.js/v1.0.0beta0.0/images';
 
+// XHR/JSON helper
+function loadJSON(path, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(e) {
+        if (xhr.readyState==4) {
+            if (xhr.status==200) {
+                callback(JSON.parse(xhr.responseText));
+            } else {
+                callback(null, xhr);
+            }
+        }
+    };
+    xhr.open('GET', path, true);
+    xhr.send();
+}
+
 // Map
 
 var map = L.mapbox.map('map', 'lxbarth.map-msx8qhha').setView([45.859, 2.791], 6);
@@ -23,20 +39,14 @@ function trackStyle(zoom) {
 
 for (var stage = 1; stage <= 21; stage++) {
     (function(stage) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function(e) {
-            if (xhr.readyState==4 && xhr.status==200) {
-                var track = JSON.parse(xhr.responseText);
-                var layer = L.geoJson(topojson.object(track, track.objects['track-' + stage]), {
-                    style: trackStyle(5),
-                }).addTo(map);
-                map.on('zoomend', function() {
-                    layer.setStyle(trackStyle(map.getZoom()));
-                });
-            }
-        };
-        xhr.open('GET', 'data/tracks/track-' + stage + '.topojson', true);
-        xhr.send();
+        loadJSON('data/tracks/track-' + stage + '.topojson', function(track) {
+            var layer = L.geoJson(topojson.object(track, track.objects['track-' + stage]), {
+                style: trackStyle(5),
+            }).addTo(map);
+            map.on('zoomend', function() {
+                layer.setStyle(trackStyle(map.getZoom()));
+            });
+        });
     })(stage);
 }
 
