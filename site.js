@@ -101,11 +101,13 @@ loadJSON('data/elevation/stage_15_elevation.json', function(data, err) {
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom");
+        .orient("bottom")
+        .ticks(5);
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .orient("left");
+        .orient("left")
+        .ticks(5);
 
     var line = d3.svg.line()
         .x(function(d, i) { return x(i); })
