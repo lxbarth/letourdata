@@ -331,7 +331,8 @@ Details: http://www.positioniseverything.net/easyclearing.html
 .inner {
   padding: 20px;
   }
-.leaflet-marker-pane {
+.leaflet-marker-pane,
+.leaflet-popup-pane {
   z-index: 10;
   }
 .stage-marker {

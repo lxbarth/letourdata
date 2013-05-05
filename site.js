@@ -62,16 +62,27 @@ roadsLayer.setZIndex(9);
 loadJSON('data/stages.json', function(stages) {
     for (var i in stages.features) {
         var stage = stages.features[i];
+        var p = stage.properties;
         var stageIcon = L.divIcon({
             className: 'stage-marker',
             iconSize: new L.Point(30, 30),
-            html: '<div class="stage-label" id="' + stage.properties.ordinal + '">' + stage.properties.ordinal + '</div>'
+            html: '<div class="stage-label" id="' + p.ordinal + '">' + p.ordinal + '</div>'
         });
-        (new L.Marker(new L.LatLng(
+        var marker = new L.Marker(new L.LatLng(
             stage.geometry.coordinates[1],
             stage.geometry.coordinates[0]), {
             icon: stageIcon,
             style: {width: '100px'}
-        })).addTo(map);
+        });
+        var o = '';
+        o += '<div class="date">' + p.date + '</div>';
+        o += '<div class="stage">Stage ' + p.ordinal + '</div>';
+        o += '<div class="name"><a href="' + p.url + '">' + p.name + '</a></div>';
+        o += '<div class="distance">' + p.distance + '</div>';
+        if (p.type) {
+            o += '<div class="type">' + p.type + '</div>';
+        }
+        marker.bindPopup(o);
+        marker.addTo(map);
     }
 });
