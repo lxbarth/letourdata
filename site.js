@@ -17,7 +17,7 @@ function loadJSON(path, callback) {
 
 // Map
 
-var map = L.mapbox.map('map', 'lxbarth.map-msx8qhha').setView([45.859, 2.791], 6);
+var map = L.mapbox.map('map', 'lxbarth.map-cw6frzzi').setView([45.859, 2.791], 6);
 new L.Hash(map);
 map.attributionControl.addAttribution('Preliminary Tour de France 2013 data &copy; <a href="http://www.bikemap.net/route/1351870">Bikemap.net / Stef@n</a>');
 
@@ -27,10 +27,8 @@ function trackStyle(zoom) {
     return function(feature) {
         return {
             weight: zoom * zoom / 6,
-            opacity: 0.9,
-            color: '#FFB57A',
-            fillOpacity: 0.9,
-            fillColor: '#FFB57A'
+            opacity: 0.5,
+            color: '#e04'
         };
     };
 }

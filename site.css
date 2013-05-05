@@ -94,17 +94,17 @@ p {
 
 /* Links */
 a {
-  color:#BF724F;
+  color:#05b;
   text-decoration:none;
   }
   a:visited {
-    color:#BF724F;
+    color:#05b;
     }
   a:hover {
-    color:#BF724F;
+    color:#05b;
     }
   a:active {
-    color:#BF724F;
+    color:#05b;
     }
 
 abbr {
@@ -338,7 +338,7 @@ Details: http://www.positioniseverything.net/easyclearing.html
 .stage-marker {
   font-size: 20px;
   font-weight: bold;
-  background-color: #e30;
+  background-color: #e04;
   color: #fff;
   border-radius: 15px;
   text-align: center;
