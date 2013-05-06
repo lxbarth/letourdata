@@ -35,6 +35,6 @@ for i in range(1, 22):
                         conn.close()
 
         sys.stdout.write('\n')
-        filename = 'stage_' + i + '_elevation.json';
+        filename = 'stage_%s_elevation.json' % i
         json.dump(profile, open(filename, 'w'))
         print filename + " written"
