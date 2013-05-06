@@ -21,7 +21,10 @@ for i in range(1, 22):
                         response = conn.getresponse()
                         if (response.status != 200):
                             raise ValueError('Unexpected status')
-                        profile.append(int(response.read()))
+                        elevation = int(response.read())
+                        if (elevation < 0):
+                            elevation = 0
+                        profile.append(elevation)
                         sys.stdout.write('.')
                         sys.stdout.flush()
                         break
