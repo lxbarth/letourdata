@@ -1,7 +1,6 @@
 from math import radians, cos, sin, asin, sqrt
 from fiona import collection
 import json
-from pprint import pprint
 
 # From http://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points
 
