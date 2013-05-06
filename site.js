@@ -108,7 +108,8 @@ function loadElevation(stage) {
         var xAxis = d3.svg.axis()
             .scale(x)
             .orient("bottom")
-            .ticks(5);
+            .ticks(5)
+            .tickFormat(function(d) { return d / 1000; });
 
         var yAxis = d3.svg.axis()
             .scale(y)
