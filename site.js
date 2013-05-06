@@ -93,7 +93,7 @@ loadJSON('data/stages.json', function(stages, err) {
 });
 
 function loadElevation(stage) {
-    loadJSON('data/elevation/stage_' + stage + '_elevation.json', function(data, err) {
+    loadJSON('data/elevation/elevation_' + stage + '.json', function(data, err) {
         if (err) return console.error(err);
         var margin = {top: 20, right: 20, bottom: 30, left: 50},
             width = 300 - margin.left - margin.right,
@@ -116,8 +116,8 @@ function loadElevation(stage) {
             .ticks(5);
 
         var line = d3.svg.line()
-            .x(function(d, i) { return x(i); })
-            .y(function(d, i) { return y(d); });
+            .x(function(d) { return x(d[1]); })
+            .y(function(d) { return y(d[0]); });
 
         document.getElementById('elevation').innerHTML = "";
         var svg = d3.select("#elevation").append("svg")
@@ -126,8 +126,8 @@ function loadElevation(stage) {
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        x.domain(d3.extent(Object.keys(data), function(d) { return d; }));
-        y.domain(d3.extent(data, function(d) { return d; }));
+        x.domain(d3.extent(data, function(d) { return d[1]; }));
+        y.domain(d3.extent(data, function(d) { return d[0]; }));
 
         svg.append("g")
             .attr("class", "x axis")
